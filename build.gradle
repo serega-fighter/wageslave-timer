@@ -1,0 +1,101 @@
+buildscript {
+    repositories {
+
+        mavenCentral()
+        jcenter()
+    }
+}
+
+plugins {
+    id 'java'
+    id 'application'
+    id 'org.jetbrains.kotlin.jvm' version '1.6.21'
+    id 'org.openjfx.javafxplugin' version '0.0.10' apply(false)
+}
+
+version = '0.1-beta'
+
+repositories {
+    mavenCentral()
+    maven { url 'https://jitpack.io' }
+    maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
+}
+
+tasks.withType(JavaCompile) {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+}
+
+def javaVersion = JavaVersion.current()
+
+if (javaVersion < JavaVersion.VERSION_11) {
+    throw new GradleException("JITWatch is unsupported on Java $javaVersion")
+}
+
+apply plugin: "org.openjfx.javafxplugin"
+def openjfxVersion = "17.0.1"
+
+def javafxModules = [
+        'javafx.controls',
+        'javafx.fxml',
+        'javafx.swing',
+        'javafx.web'
+]
+
+javafx {
+    version = openjfxVersion
+    modules = javafxModules
+}
+
+dependencies {
+    javafxModules.each {
+        def javafxModuleArtifact = it.replace(".", "-")
+
+        runtimeOnly "org.openjfx:$javafxModuleArtifact:$javafx.version:linux"
+        runtimeOnly "org.openjfx:$javafxModuleArtifact:$javafx.version:win"
+        runtimeOnly "org.openjfx:$javafxModuleArtifact:$javafx.version:mac"
+    }
+}
+
+
+dependencies {
+
+    implementation group: 'com.fifesoft', name: 'rsyntaxtextarea', version: '3.1.1'
+    implementation group: 'com.github.javaparser', name: 'javaparser-core', version: '3.16.1'
+    implementation group: 'org.agrona', name: 'agrona', version: '0.9.22'
+    implementation group: 'org.kordamp.bootstrapfx', name: 'bootstrapfx-core', version: '0.2.3'
+
+    implementation group: 'org.apache.logging.log4j', name: 'log4j', version: '2.13.1'
+    implementation group: 'org.jetbrains', name: 'annotations', version: '18.0.0'
+
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    testCompile group: 'org.hamcrest', name: 'hamcrest', version: '2.2'
+}
+
+mainClassName = 'com.serega.timer.UIStarter'
+
+sourceSets {
+    main.java.srcDirs = ['src/main/java', '../src/main/java', 'src/main/kotlin', '../src/main/kotlin']
+}
+
+run {
+    workingDir = rootDir
+}
+
+task fatJar(type: Jar) {
+    manifest {
+        attributes(
+                'Main-Class': mainClassName,
+                'Implementation-Title': "Wageslave-timer",
+                'Implementation-Version': rootProject.version,
+                'Built-By': 'serega-fighter',
+                'Built-Date': new Date(),
+                'Built-JDK': System.getProperty('java.version')
+        )
+    }
+
+    group = 'build'
+    archiveName = "wageslave-timer-${rootProject.version}.jar"
+    from { configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}

@@ -32,8 +32,6 @@ class PrimaryView : Initializable {
                 KeyCode.MINUS -> increaseWindow()
             }
         }
-
-        timerTextField.duration = 6.hours
     }
 
     private fun increaseWindow() {

@@ -2,24 +2,30 @@ package com.serega.timer
 
 import javafx.application.Platform
 import javafx.scene.control.TextField
+import java.awt.Toolkit
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 import kotlin.time.Duration
-import kotlin.time.Duration.Companion.hours
 import kotlin.time.Duration.Companion.milliseconds
+import kotlin.time.Duration.Companion.seconds
 
 class TimerTextArea : TextField() {
 
     private val executor = Executors.newScheduledThreadPool(1)
     private var startTime = System.currentTimeMillis()
     private var state = TimerState.RESET
-    private var timeInitialized = 6.hours
-    private var timeLeft = 6.hours
+    private var timeInitialized = 5.seconds
+    private var timeLeft: Duration = timeInitialized
         set(value) {
-            field = value
+            if (value.isNegative()) {
+                field = 0.seconds
+                Toolkit.getDefaultToolkit().beep();
+            } else {
+                field = value
+            }
+
             this.text = value.toStringCustom()
         }
-
 
     init {
         timeLeft = timeInitialized
@@ -46,7 +52,6 @@ class TimerTextArea : TextField() {
     fun start() {
         startTime = System.currentTimeMillis()
         state = TimerState.RUNNING
-
         executor.scheduleAtFixedRate(
                 {
                     Platform.runLater {

@@ -6,16 +6,15 @@ import java.awt.Toolkit
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 import kotlin.time.Duration
+import kotlin.time.Duration.Companion.hours
 import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.seconds
 
 class TimerTextArea : TextField() {
 
     private val executor = Executors.newScheduledThreadPool(1)
-    private var startTime = System.currentTimeMillis()
     private var state = TimerState.RESET
-    private var timeInitialized = 5.seconds
-    private var timeLeft: Duration = timeInitialized
+    private var duration: Duration = 6.hours
         set(value) {
             if (value.isNegative()) {
                 field = 0.seconds
@@ -24,12 +23,12 @@ class TimerTextArea : TextField() {
                 field = value
             }
 
+            this.lastUpdTime = System.currentTimeMillis()
             this.text = value.toStringCustom()
         }
+    private var lastUpdTime: Long = 0L
 
     init {
-        timeLeft = timeInitialized
-
         setOnAction {
             start()
         }
@@ -50,13 +49,20 @@ class TimerTextArea : TextField() {
     }
 
     fun start() {
-        startTime = System.currentTimeMillis()
+        if (state == TimerState.RUNNING) {
+            return
+        }
+        this.duration = Duration.parse(text)
+
         state = TimerState.RUNNING
+
         executor.scheduleAtFixedRate(
                 {
                     Platform.runLater {
-                        val timePassed = System.currentTimeMillis() - startTime
-                        this.timeLeft = this.timeInitialized - timePassed.milliseconds
+                        if (state == TimerState.RUNNING) {
+                            val timePassed = System.currentTimeMillis() - lastUpdTime
+                            this.duration = this.duration - timePassed.milliseconds
+                        }
                     }
                 },
                 1,

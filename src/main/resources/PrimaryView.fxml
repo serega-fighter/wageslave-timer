@@ -2,8 +2,6 @@
 
 <?scenebuilder-stylesheet DarkTheme.css?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <?import com.serega.timer.TimerTextArea?>
@@ -14,12 +12,12 @@
    <children>
       <Button fx:id="button">
          <HBox.margin>
-            <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+            <Insets bottom="5.0" left="10.0" right="5.0" top="5.0" />
          </HBox.margin>
       </Button>
       <TimerTextArea fx:id="timerTextField">
          <HBox.margin>
-            <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+            <Insets bottom="5.0" left="5.0" right="10.0" top="5.0" />
          </HBox.margin>
          <font>
             <Font name="Comic Sans MS Bold" size="17.0" />

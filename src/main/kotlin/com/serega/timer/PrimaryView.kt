@@ -2,8 +2,10 @@ package com.serega.timer
 
 import javafx.fxml.FXML
 import javafx.fxml.Initializable
+import javafx.scene.control.Button
 import javafx.scene.control.TextField
 import javafx.scene.input.KeyCode
+import javafx.scene.layout.HBox
 import javafx.scene.layout.VBox
 import java.net.URL
 import java.util.*
@@ -13,7 +15,9 @@ import kotlin.time.Duration.Companion.hours
 class PrimaryView : Initializable {
 
     @FXML
-    private lateinit var primaryPane: VBox
+    private lateinit var primaryPane: HBox
+    @FXML
+    private lateinit var button: Button
     @FXML
     private lateinit var timerTextField: TimerTextArea
 
@@ -25,12 +29,8 @@ class PrimaryView : Initializable {
             }
         }
 
-        primaryPane.setOnKeyPressed { pressEvent ->
-            when (pressEvent.code) {
-                KeyCode.SPACE -> increaseWindow()
-                KeyCode.EQUALS -> increaseWindow()
-                KeyCode.MINUS -> increaseWindow()
-            }
+        button.setOnAction {
+            timerTextField.pauseOrResume()
         }
     }
 

@@ -48,6 +48,29 @@ class TimerTextArea : TextField() {
         return text
     }
 
+    fun pauseOrResume() {
+        if (state == TimerState.RUNNING) {
+            pause()
+        } else {
+            resume()
+        }
+    }
+
+    fun pause() {
+        if (state != TimerState.RUNNING) {
+            return
+        }
+        state = TimerState.PAUSED
+    }
+
+    fun resume() {
+        if (state != TimerState.PAUSED) {
+            return
+        }
+        state = TimerState.RUNNING
+        lastUpdTime = System.currentTimeMillis()
+    }
+
     fun start() {
         if (state == TimerState.RUNNING) {
             return

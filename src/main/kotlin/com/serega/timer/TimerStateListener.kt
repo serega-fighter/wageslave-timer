@@ -1,4 +1,7 @@
 package com.serega.timer
 
-class TimerStateListener {
+@FunctionalInterface
+interface TimerStateListener {
+
+    fun onNewState(state: TimerState)
 }

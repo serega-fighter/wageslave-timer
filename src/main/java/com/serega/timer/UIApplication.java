@@ -6,6 +6,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ToolBar;
 import javafx.scene.image.Image;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -34,7 +36,7 @@ public class UIApplication extends Application {
         stage.setAlwaysOnTop(true);
         stage.setMaximized(false);
         stage.setOnCloseRequest(event -> System.exit(0));
-        stage.setTitle("Wagelsave-Timer");
+        stage.setTitle("Timer");
 //        InputStream iconStream = UIApplication.class.getClassLoader().getResourceAsStream("icons/ulyp-logo-icon.png");
 //        if (iconStream == null) {
 //            throw new RuntimeException("Icon not found");

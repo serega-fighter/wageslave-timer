@@ -14,6 +14,10 @@ class TimerTextArea : TextField() {
 
     private val executor = Executors.newScheduledThreadPool(1)
     private var state = TimerState.RESET
+        set(value) {
+            stateListener?.onNewState(value)
+            field = value
+        }
     private var duration: Duration = 6.hours
         set(value) {
             if (value.isNegative()) {
@@ -27,6 +31,11 @@ class TimerTextArea : TextField() {
             this.text = value.toStringCustom()
         }
     private var lastUpdTime: Long = 0L
+    public var stateListener: TimerStateListener? = null
+        set(value) {
+            field?.onNewState(this.state)
+            field = value
+        }
 
     init {
         setOnAction {

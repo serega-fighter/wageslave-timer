@@ -36,7 +36,7 @@ public class UIApplication extends Application {
         stage.setAlwaysOnTop(true);
         stage.setMaximized(false);
         stage.setOnCloseRequest(event -> System.exit(0));
-        stage.setTitle("Timer");
+        stage.setTitle("Hourglass");
         InputStream iconStream = UIApplication.class.getClassLoader().getResourceAsStream("hourglass.png");
         if (iconStream == null) {
             throw new RuntimeException("Icon not found");

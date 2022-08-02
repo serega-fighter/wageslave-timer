@@ -31,7 +31,7 @@ class TimerTextArea : TextField() {
             this.text = value.toStringCustom()
         }
     private var lastUpdTime: Long = 0L
-    public var stateListener: TimerStateListener? = null
+    var stateListener: TimerStateListener? = null
         set(value) {
             field?.onNewState(this.state)
             field = value

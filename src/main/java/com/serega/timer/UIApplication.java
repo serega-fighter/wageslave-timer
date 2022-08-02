@@ -37,11 +37,11 @@ public class UIApplication extends Application {
         stage.setMaximized(false);
         stage.setOnCloseRequest(event -> System.exit(0));
         stage.setTitle("Timer");
-//        InputStream iconStream = UIApplication.class.getClassLoader().getResourceAsStream("icons/ulyp-logo-icon.png");
-//        if (iconStream == null) {
-//            throw new RuntimeException("Icon not found");
-//        }
-//        stage.getIcons().add(new Image(iconStream));
+        InputStream iconStream = UIApplication.class.getClassLoader().getResourceAsStream("hourglass.png");
+        if (iconStream == null) {
+            throw new RuntimeException("Icon not found");
+        }
+        stage.getIcons().add(new Image(iconStream));
 
         stage.show();
     }

@@ -59,17 +59,7 @@ dependencies {
 
 
 dependencies {
-
-    implementation group: 'com.fifesoft', name: 'rsyntaxtextarea', version: '3.1.1'
-    implementation group: 'com.github.javaparser', name: 'javaparser-core', version: '3.16.1'
-    implementation group: 'org.agrona', name: 'agrona', version: '0.9.22'
-    implementation group: 'org.kordamp.bootstrapfx', name: 'bootstrapfx-core', version: '0.2.3'
-
-    implementation group: 'org.apache.logging.log4j', name: 'log4j', version: '2.13.1'
     implementation group: 'org.jetbrains', name: 'annotations', version: '18.0.0'
-
-    testCompile group: 'junit', name: 'junit', version: '4.12'
-    testCompile group: 'org.hamcrest', name: 'hamcrest', version: '2.2'
 }
 
 mainClassName = 'com.serega.timer.UIStarter'

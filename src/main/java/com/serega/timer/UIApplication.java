@@ -31,6 +31,7 @@ public class UIApplication extends Application {
         Parent root = loader.load();
 
         Scene scene = new Scene(root);
+        scene.getStylesheets().add("style.css");
         stage.setScene(scene);
         stage.initStyle(StageStyle.UNDECORATED);
         stage.setAlwaysOnTop(true);

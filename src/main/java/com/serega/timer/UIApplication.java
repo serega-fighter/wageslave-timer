@@ -30,14 +30,15 @@ public class UIApplication extends Application {
 
         Parent root = loader.load();
 
-        Scene scene = new Scene(root);
+        Scene scene = new Scene(root, Color.TRANSPARENT);
         scene.getStylesheets().add("style.css");
         stage.setScene(scene);
-        stage.initStyle(StageStyle.UNDECORATED);
+        stage.initStyle(StageStyle.TRANSPARENT);
         stage.setAlwaysOnTop(true);
         stage.setMaximized(false);
         stage.setOnCloseRequest(event -> System.exit(0));
         stage.setTitle("Hourglass");
+
         InputStream iconStream = UIApplication.class.getClassLoader().getResourceAsStream("hourglass.png");
         if (iconStream == null) {
             throw new RuntimeException("Icon not found");

@@ -2,15 +2,12 @@ package com.serega.timer
 
 import javafx.fxml.FXML
 import javafx.fxml.Initializable
-import javafx.geometry.Insets
 import javafx.scene.control.Button
-import javafx.scene.control.TextField
-import javafx.scene.input.KeyCode
 import javafx.scene.layout.*
 import javafx.scene.paint.Color
 import java.net.URL
 import java.util.*
-import kotlin.time.Duration.Companion.hours
+import kotlin.math.roundToInt
 
 
 class PrimaryView : Initializable {
@@ -24,16 +21,17 @@ class PrimaryView : Initializable {
 
     override fun initialize(url: URL, rb: ResourceBundle?) {
 
+        primaryPane.style = "-fx-background-radius: 6; -fx-background-insets: 0, 0 1 1 0;"
+
         timerTextField.stateListener = object : TimerStateListener {
             override fun onNewState(state: TimerState) {
                 val color = when(state) {
                     TimerState.RUNNING -> Color.LIGHTGREEN
-                    TimerState.PAUSED -> Color.YELLOW
-                    TimerState.RESET -> Color.LIGHTGREEN
-
+                    TimerState.PAUSED -> Color.MOCCASIN
+                    TimerState.RESET -> Color.LIGHTGRAY
                 }
-                val fill = Background(BackgroundFill(color, CornerRadii.EMPTY, Insets.EMPTY))
-                primaryPane.background = fill
+
+                primaryPane.style += "-fx-background-color: rgb(${(color.red * 255.0).roundToInt()}, ${(color.green * 255.0).roundToInt()}, ${(color.blue * 255.0).roundToInt()});"
             }
         }
 

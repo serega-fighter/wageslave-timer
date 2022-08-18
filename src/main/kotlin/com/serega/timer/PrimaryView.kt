@@ -46,9 +46,4 @@ class PrimaryView : Initializable {
             timerTextField.pauseOrResume()
         }
     }
-
-    private fun increaseWindow() {
-        primaryPane.prefHeight = primaryPane.prefHeight + 10.0
-        primaryPane.prefWidth = primaryPane.prefWidth + 30.0
-    }
 }

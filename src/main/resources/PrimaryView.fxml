@@ -10,7 +10,7 @@
 
 <HBox fx:id="primaryPane" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.serega.timer.PrimaryView">
    <children>
-      <Button fx:id="button">
+      <Button fx:id="button" prefWidth="25">
          <HBox.margin>
             <Insets bottom="5.0" left="15.0" right="5.0" top="5.0" />
          </HBox.margin>

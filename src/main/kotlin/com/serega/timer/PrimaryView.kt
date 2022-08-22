@@ -37,8 +37,8 @@ class PrimaryView : Initializable {
 
         primaryPane.setOnMousePressed { pressEvent ->
             primaryPane.setOnMouseDragged { dragEvent ->
-                UIApplication.stage.setX(dragEvent.getScreenX() - pressEvent.getSceneX())
-                UIApplication.stage.setY(dragEvent.getScreenY() - pressEvent.getSceneY())
+                UIApplication.stage.x = dragEvent.screenX - pressEvent.sceneX
+                UIApplication.stage.y = dragEvent.screenY - pressEvent.sceneY
             }
         }
 

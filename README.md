@@ -1,4 +1,4 @@
-## Simple widget timer for remote workers
+## Minimal compact widget timer for remote workers
 
 Boost you productivity NOW
 

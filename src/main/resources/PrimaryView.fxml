@@ -19,9 +19,6 @@
          <HBox.margin>
             <Insets bottom="5.0" left="5.0" right="10.0" top="5.0" />
          </HBox.margin>
-         <font>
-            <Font name="Comic Sans MS Bold" size="12.0" />
-         </font>
       </TimerTextArea>
    </children>
 </HBox>

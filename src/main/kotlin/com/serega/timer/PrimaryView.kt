@@ -22,6 +22,7 @@ class PrimaryView : Initializable {
     override fun initialize(url: URL, rb: ResourceBundle?) {
 
         primaryPane.style = "-fx-background-radius: 6; -fx-background-insets: 0, 0 1 1 0;"
+        timerTextField.style = "-fx-font-weight: bold"
 
         timerTextField.stateListener = object : TimerStateListener {
             override fun onNewState(state: TimerState) {

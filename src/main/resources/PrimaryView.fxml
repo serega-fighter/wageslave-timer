@@ -2,23 +2,21 @@
 
 <?scenebuilder-stylesheet DarkTheme.css?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.text.Font?>
 
 <?import com.serega.timer.TimerTextArea?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.HBox?>
 
-<HBox fx:id="primaryPane" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.serega.timer.PrimaryView">
-   <children>
-      <Button fx:id="button" prefWidth="25">
-         <HBox.margin>
-            <Insets bottom="5.0" left="10.0" right="5.0" top="5.0" />
-         </HBox.margin>
-      </Button>
-      <TimerTextArea fx:id="timerTextField">
-         <HBox.margin>
-            <Insets bottom="5.0" left="5.0" right="10.0" top="5.0" />
-         </HBox.margin>
-      </TimerTextArea>
-   </children>
+<HBox fx:id="primaryPane" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.serega.timer.PrimaryView">
+   <Button fx:id="button" prefWidth="25">
+      <HBox.margin>
+         <Insets bottom="5.0" left="10.0" right="5.0" top="5.0"/>
+      </HBox.margin>
+   </Button>
+   <TimerTextArea fx:id="timerTextField">
+      <HBox.margin>
+         <Insets bottom="5.0" left="5.0" right="10.0" top="5.0"/>
+      </HBox.margin>
+   </TimerTextArea>
 </HBox>

@@ -92,7 +92,11 @@ class TimerTextArea : TextField() {
                 {
                     Platform.runLater {
                         if (state == TimerState.RUNNING) {
-                            val timePassed = System.currentTimeMillis() - lastUpdTime
+                            var timePassed = System.currentTimeMillis() - lastUpdTime
+                            if (timePassed > 5000) {
+                                // Too much time passed since last tick, the OS must be in sleep mode
+                                timePassed = 0
+                            }
                             this.duration = this.duration - timePassed.milliseconds
                         }
                     }
